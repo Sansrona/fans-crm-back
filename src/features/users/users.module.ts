@@ -6,6 +6,8 @@ import {UserHashingManager} from "../../common/adapters/user-hashing.adapter";
 import {UsersRepository} from "./db/users.repository";
 import {UsersQueryRepository} from "./db/users.query-repository";
 import {Sequelize} from "sequelize-typescript";
+import {UsersEntity} from "./entities/users.entity";
+import {SequelizeModule} from "@nestjs/sequelize";
 
 const commandHandlers = [
     CreateUserHandler
@@ -15,7 +17,8 @@ const repos = [
 ]
 
 @Module({
+    imports: [SequelizeModule.forFeature([UsersEntity])],
   controllers: [UsersController],
-  providers: [Sequelize, UserHashingManager,...usersProviders, ...commandHandlers, ...repos],
+  providers: [UserHashingManager,...usersProviders, ...commandHandlers, ...repos],
 })
 export class UsersModule {}
