@@ -6,6 +6,7 @@ import { UsersModule } from './features/users/users.module';
 import {ConfigModule} from "@nestjs/config";
 import configuration, {validate} from "./settings/configuration";
 import {Environments} from "./types/environment.types";
+import {AuthModule} from "./features/auth/auth.module";
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -16,7 +17,7 @@ import {Environments} from "./types/environment.types";
         process.env.ENV !== Environments.DEVELOPMENT &&
         process.env.ENV !== Environments.TEST,
     envFilePath: ['.env.local', '.env.prod', '.env'],
-  }),DbModule, UsersModule],
+  }),DbModule, UsersModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

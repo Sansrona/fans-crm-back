@@ -12,8 +12,15 @@ export class UsersRepository {
     async getUserById(id: number) {
         return await this.usersRepo.findByPk(id);
     }
-
-    async save(user: UsersEntity) {
-       return this.usersRepo.create<UsersEntity>(user);
+    async getUserByEmail(email: string) {
+        return await this.usersRepo.findOne({
+            where: {
+                email
+            }
+        });
     }
+
+    // async save(user: UsersEntity) {
+    //    return this.usersRepo.create<UsersEntity>(user);
+    // }
 }

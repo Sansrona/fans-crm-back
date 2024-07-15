@@ -14,5 +14,7 @@ export class UsersEntity extends Model {
 
     @Column
     phone: string;
+    @Column
+    passwordHash: string
 }
 
